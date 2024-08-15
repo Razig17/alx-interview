@@ -6,10 +6,13 @@ def canUnlockAll(boxes):
     """
     Determine if all the boxes can be opened.
 
-    This function takes a list of lists as an input, where each sublist represents a box and the integers in the sublist represent the keys to other boxes. The function checks if it's possible to open all boxes starting from the first box (box 0).
+    This function takes a list of lists as an input,
+    where each sublist represents a box and the integers in the sublist
+    represent the keys to other boxes.
+    The function checks if it's possible to open all boxes.
 
     Parameters:
-    boxes (List[List[int]]): A list of lists where each sublist represents a box and the integers in the sublist represent the keys to other boxes.
+    boxes (List[List[int]]): A list of lists o
 
     Returns:
     bool: True if all boxes can be opened, False otherwise.
@@ -21,7 +24,8 @@ def canUnlockAll(boxes):
     False
 
     Note:
-    The function assumes that the keys are zero-indexed and that the first box (box 0) is initially open.
+    The function assumes that the keys are zero-indexed
+    and that the first box (box 0) is initially open.
     """
 
     if not boxes:
