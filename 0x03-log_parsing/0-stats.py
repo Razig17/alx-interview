@@ -60,10 +60,9 @@ try:
         if count == 10:
             print(f'File size: {size}', flush=True)
             [print(f'{code}: {co}', flush=True)
-        for code, co in status.items() if co > 0 ]
+                for code, co in status.items() if co > 0]
             count = 0
 except (KeyboardInterrupt, EOFError):
-    print('File size: {}'.format(size))
-    for key, value in sorted(status.items()):
-        if value:
-            print('{}: {}'.format(key, value))
+    print(f'File size: {size}', flush=True)
+    [print(f'{code}: {co}', flush=True)
+        for code, co in status.items() if co > 0]
