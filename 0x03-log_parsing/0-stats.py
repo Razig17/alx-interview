@@ -25,8 +25,15 @@ The script assumes that the input is provided via stdin,
  such as by redirection from a file.
 """
 import sys
+import re
 
 
+ip = r'^\S+\s*'
+http_request = r'\"GET /projects/260 HTTP/1.1\"'
+status_code_r = r'(?P<status_code>\S+)'
+file_size_r = r'(?P<file_size>\d+)'
+date = r'\s*\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}\]'
+pattern = f'{ip}-{date} {http_request} {status_code_r} {file_size_r}'
 size = 0
 stats = {
     '200': 0,
@@ -43,7 +50,7 @@ try:
     for line in sys.stdin:
 
         data = line.strip().split()
-        if len(data) == 9:
+        if re.fullmatch(pattern, line.split()):
             size += int(data[-1])
             if data[-2] in stats:
                 stats[data[-2]] += 1
