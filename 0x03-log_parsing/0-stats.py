@@ -49,11 +49,13 @@ count = 0
 try:
     for line in sys.stdin:
         ln = input()
-        data = line.strip().split()
-        if re.fullmatch(pattern, ln):
-            size += int(data[-1])
-            if data[-2] in stats:
-                stats[data[-2]] += 1
+        m = re.fullmatch(pattern, ln)
+        if m:
+            status_code = m.group('status_code')
+            file_size = int(m.group('file_size'))
+            if status_code in stats:
+                stats[status_code] += 1
+            size += file_size
             count += 1
         if count == 10:
             print('File size: {}'.format(size))
