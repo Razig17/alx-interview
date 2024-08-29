@@ -35,7 +35,7 @@ file_size_r = r'(?P<file_size>\d+)'
 date = r'\s*\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}\]'
 pattern = f'{ip}-{date} {http_request} {status_code_r} {file_size_r}'
 size = 0
-stats = {
+status = {
     '200': 0,
     '301': 0,
     '400': 0,
@@ -53,18 +53,17 @@ try:
         if m:
             status_code = m.group('status_code')
             file_size = int(m.group('file_size'))
-            if status_code in stats:
-                stats[status_code] += 1
+            if status_code in status:
+                status[status_code] += 1
             size += file_size
             count += 1
         if count == 10:
-            print('File size: {}'.format(size))
-            for key, value in sorted(stats.items()):
-                if value:
-                    print('{}: {}'.format(key, value))
+            print(f'File size: {size}', flush=True)
+            [print(f'{code}: {co}', flush=True)
+        for code, co in status.items() if co > 0 ]
             count = 0
 except (KeyboardInterrupt, EOFError):
     print('File size: {}'.format(size))
-    for key, value in sorted(stats.items()):
+    for key, value in sorted(status.items()):
         if value:
             print('{}: {}'.format(key, value))
