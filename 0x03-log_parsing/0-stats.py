@@ -48,9 +48,9 @@ stats = {
 count = 0
 try:
     for line in sys.stdin:
-
+        ln = input()
         data = line.strip().split()
-        if re.fullmatch(pattern, line.split()):
+        if re.fullmatch(pattern, ln):
             size += int(data[-1])
             if data[-2] in stats:
                 stats[data[-2]] += 1
