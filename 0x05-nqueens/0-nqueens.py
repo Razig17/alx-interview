@@ -17,7 +17,6 @@ N = int(sys.argv[1])
 
 def solve_n_queens(n):
     """Solve the N queens problem for n x n chess board
-
     Args:
         n (int): The number of queens
     """
