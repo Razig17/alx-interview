@@ -16,19 +16,16 @@ def makeChange(coins, total):
     If the total is 0 or less, returns 0.
     If the total cannot be met by any combination of the coins, returns -1.
     """
-    if total <= 0:
-        return 0
+    dp = [total + 1] * (total + 1)
 
-    coins.sort(reverse=True)
-    print(coins)
-    if total < coins[0]:
-        return -1
+    dp[0] = 0
 
-    count = 0
-    for coin in coins:
-        count += total // coin
-        total = total % coin
-        if total == 0:
-            return count
+    for i in range(1, total + 1):
 
-    return -1
+        for j in range(0, len(coins)):
+
+            if coins[j] <= i:
+
+                dp[i] = min(dp[i], dp[i - coins[j]] + 1)
+
+    return -1 if dp[total] > total else dp[total]
