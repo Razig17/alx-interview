@@ -28,7 +28,7 @@ def isWinner(x, nums):
     maria = 0
     for i in range(x):
         n = nums[i]
-        if n == 1:
+        if n <= 1:
             ben += 1
             continue
         prime = [True for i in range(n + 1)]
