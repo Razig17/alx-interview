@@ -22,11 +22,12 @@ def isWinner(x, nums):
     - If the count of prime numbers is odd, Maria wins the round.
     - The player with the most wins is declared the overall winner.
     """
-    if x is None or nums is None or len(nums) != x:
+    if x is None or nums is None or x <= 0:
         return None
     ben = 0
     maria = 0
-    for n in nums:
+    for i in range(x):
+        n = nums[i]
         if n == 1:
             ben += 1
             continue
